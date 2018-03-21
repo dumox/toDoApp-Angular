@@ -1,0 +1,8 @@
+<div class="input-group">
+  <label class="sr-only" for="userInput">Task</label>
+  <input type="text" #userInputText (keyup.enter)="addTask( userInputText.value ); userInputText.value='';"  class="form-control" id="userInput" placeholder="What'd you get done?">
+  <span class="input-group-btn">
+    <button (click)="addTask( userInputText.value )" class="btn btn-default" type="button">
+      <span class="glyphicon glyphicon-plus"></span> Add Task</button>
+    </span>
+</div>

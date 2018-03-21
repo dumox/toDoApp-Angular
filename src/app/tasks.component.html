@@ -1,0 +1,54 @@
+<div class="panel panel-default" *ngIf="tasks.length > 0">
+  <div class="panel-heading">
+    <h3 class="panel-title">ToDo List</h3>
+  </div>
+  <div class="panel-body">
+    <p>You have 
+      <span class="badge">
+        {{ tasks.length }}
+      </span> tasks
+    </p>
+    <p>You can sort tasks by:</p>
+    <div class="btn-group btn-group-justified" role="group" aria-label="...">
+        <div class="btn-group" role="group">
+          <button (click)="sortTasksByNumber()" type="button" class="btn btn-default">
+              <span *ngIf="!sortByNumberToZero" aria-hidden="true" class="glyphicon glyphicon-sort-by-order"></span>
+              <span *ngIf="sortByNumberToZero" aria-hidden="true" class="glyphicon glyphicon glyphicon-sort-by-order-alt"></span>
+              Number
+          </button>
+        </div>
+        <div class="btn-group" role="group">
+          <button (click)="sortTasksByName()" type="button" class="btn btn-default">
+            <span *ngIf="!sortByNameToEnd" aria-hidden="true" class="glyphicon glyphicon-arrow-down"></span>
+            <span *ngIf="sortByNameToEnd" aria-hidden="true" class="glyphicon glyphicon-arrow-up"></span>
+            Name
+          </button>
+        </div>
+    </div>
+  </div>
+  <ul class="list-group">
+    <li *ngFor="let task of tasks let i = index" class="task-item list-group-item clearfix" #taskItemEl [class.isEditing]="task === editingTask">
+      <div class="row">
+        <div class="col-xs-2">
+          <span>
+            {{ task.id }}
+          </span>
+        </div>
+        <div class="col-xs-8">
+          <p #taskText>{{ task.title }} </p>
+        </div>
+        <div class="col-xs-2 pull-right btn-task-control">
+          <button (click)="editTask(task, taskItemEl)" type="button" class="btn btn-warning btn-xs" aria-label="Edit">
+            <span aria-hidden="true" class="glyphicon glyphicon-pencil"></span>
+          </button>
+          <button (click)="deleteTask(i)" type="button" class="btn btn-danger btn-xs" aria-label="Remove">
+            <span aria-hidden="true" class="glyphicon glyphicon-trash"></span>
+          </button>
+        </div>
+      </div>
+      <div class="col-xs-12">
+        <input autofocus class="edit" *ngIf="taskItemEl.classList.contains('isEditing') && task === editingTask" [value]="task.title" #editedTask  (keyup.enter)="updateEditedTask(task, editedTask.value)" (keyup.escape)="stopEditingTask(taskItemEl)" (blur)="stopEditingTask(taskItemEl)">
+      </div>
+    </li>
+  </ul>
+</div>

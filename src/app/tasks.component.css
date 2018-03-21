@@ -1,0 +1,36 @@
+.btn {
+  transition: all ease .5s;
+}
+.task-item {
+  /* margin-top: 5px; */
+  /* box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23); */
+  padding: 2%;
+  transition: all .2s;
+}
+.task-item:nth-child(odd) {
+  background: rgb(240, 240, 234);
+}
+.btn-task-control {
+  opacity: 0;
+  transition: all ease .5s;
+}
+.task-item:hover {
+  transform: translate3d(0,-5px,0);
+  background: rgba(132, 245, 211, 0.95);
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+.task-item:hover .btn-task-control {
+  opacity: 1;
+}
+.isEditing {
+  background: #FFFD8C;
+  margin: 10px 0;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+.edit {
+  width: 100%;
+  padding-left: 10px;
+}
+.btn-xs:hover {
+  transform: scale(1.2);
+}
